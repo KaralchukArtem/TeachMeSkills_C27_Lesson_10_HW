@@ -4,31 +4,32 @@ import com.teachmeskills.lesson10.model.BaseCard;
 import com.teachmeskills.lesson10.model.impl.client.Client;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class WalletOperationService {
 
     public void showCard(ArrayList<BaseCard> wallet) {
         for (BaseCard agr : wallet)
             System.out.println(agr.toString());
-        System.out.println("");
     }
 
     public void searchForTheSameCards(ArrayList<BaseCard> wallet) {
         int count = 0;
+        boolean[] booleans = new boolean[wallet.size()];
+        for (boolean agr : booleans) {
+            agr = false;
+        }
         for (int i = 0; i < wallet.size(); i++) {
             for (int j = i + 1; j < wallet.size(); j++) {
                 if (wallet.get(i).equals(wallet.get(j))) {
-                    count++;
-                    System.out.println(count);
+                    booleans[i] = true;
+                    booleans[j] = true;
                 }
             }
-            if (Objects.equals(count, wallet.size() - 1)) {
-                count++;
-                break;
-            }
         }
-        System.out.println(count);
+        for (boolean agr : booleans) {
+            if (agr) count++;
+        }
+        System.out.println("У вас - " + count + " одинаковых карт");
     }
 
     public void switchCard(Client client, int count) {

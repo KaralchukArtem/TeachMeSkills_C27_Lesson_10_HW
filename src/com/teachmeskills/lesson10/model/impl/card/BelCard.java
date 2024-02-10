@@ -24,4 +24,5 @@ public class BelCard extends BaseCard {
     public int hashCode() {
         return super.hashCode();
     }
+
 }

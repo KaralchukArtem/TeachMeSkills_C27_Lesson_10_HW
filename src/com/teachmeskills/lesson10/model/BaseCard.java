@@ -30,7 +30,7 @@ public abstract class BaseCard {
         return currentAmount;
     }
     public void setCurrentAmount(double currentAmount) {
-        this.currentAmount = currentAmount;
+        this.currentAmount += currentAmount;
     }
 
     @Override

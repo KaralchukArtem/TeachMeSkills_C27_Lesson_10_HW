@@ -1,11 +1,7 @@
 import com.teachmeskills.lesson10.model.BaseCard;
-import com.teachmeskills.lesson10.model.impl.card.BelCard;
 import com.teachmeskills.lesson10.model.impl.client.Client;
-import com.teachmeskills.lesson10.service.WalletOperationService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -13,7 +9,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        WalletOperationService walletOperationService = new WalletOperationService();
         Client client = new Client("tema", 21, "Minsk");
         ArrayList<BaseCard> wallet = client.getWallet();
 
@@ -22,15 +17,18 @@ public class Main {
         do {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Если хотите добавить карту нажмите 1, нет - 2");
-            if (scanner.nextInt() == 1) {
-                System.out.println("Выбирите карту 1,2,3");
-                client.switchCard(client, scanner.nextInt());
-            } else {
-                t = false;
+            switch (scanner.nextInt()) {
+                case 1: {
+                    System.out.println("Выбирите карту 1,2,3");
+                    client.switchCard(client, scanner.nextInt());
+                    break;
+                }
+                case 2: {
+                    client.showCard(wallet);
+                    client.searchForTheSameCards(wallet);
+                    t = false;
+                }
             }
         } while (t);
-
-        client.showCard(wallet);
-        client.searchForTheSameCards(wallet);
     }
 }
